@@ -1,0 +1,47 @@
+---
+// src/components/Hero.astro
+// Anda bisa mengganti URL gambar di bawah ini dengan gambar lokal (import) nanti jika mau
+import heroImage from "../assets/bg1.jpg"
+---
+
+<section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+    
+    <div class="absolute inset-0 z-0">
+        <img 
+            src={heroImage.src} 
+            alt="Latar Belakang Pertanian" 
+            class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-blue-950/85"></div>
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-linear-to-t from-slate-50 to-transparent"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        
+        <span class="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md text-yellow-400 border border-yellow-500/50 text-sm font-semibold mb-6 animate-fade-in-up">
+            🌾 Profesionalisme Penyuluh, Kesejahteraan Petani
+        </span>
+        
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Membangun Pertanian Modern <br/> 
+            Berbasis <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">Teknologi & Kearifan</span>
+        </h1>
+        
+        <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            Wadah kolaborasi SDM pertanian untuk meningkatkan literasi, edukasi, dan produktivitas pangan nusantara.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#visimisi" class="px-8 py-4 bg-green-600 text-white rounded-full font-bold shadow-lg hover:bg-green-700 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                Selengkapnya
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            
+            <a href="#struktur" class="px-8 py-4 border border-gray-400 text-gray-200 rounded-full font-bold hover:bg-white/10 hover:text-white transition">
+                Struktur Organisasi
+            </a>
+        </div>
+    </div>
+</section>

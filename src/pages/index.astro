@@ -1,17 +1,35 @@
 ---
+// src/pages/index.astro
 
+// 1. Import Layout
+import MainLayout from '../layouts/MainLayout.astro';
+
+// 2. Import Semua Komponen
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import VisiMisi from '../components/VisiMisi.astro'
+import StrukturOrganisasi from '../components/StrukturOrganisasi.astro';
+import Layanan from '../components/Layanan.astro';
+import Produk from '../components/Produk.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout 
+  title="PERHIPTANI Sragen - Maju Bersama Penyuluh" 
+  description="Website resmi PERHIPTANI Kabupaten Sragen. Informasi struktur organisasi, layanan konsultasi tani, dan produk unggulan binaan.">
+  
+  <Navbar />
+  
+  <main class="grow">
+    
+    <Hero />
+    <VisiMisi />
+    <StrukturOrganisasi />
+    <Layanan />
+    <Produk />
+    
+  </main>
+
+  <Footer />
+
+</MainLayout>

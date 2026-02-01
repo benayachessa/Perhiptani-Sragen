@@ -1,0 +1,26 @@
+---
+// src/components/StrukturOrganisasi.astro
+const pengurus = [
+    { nama: "Ir. Budi Santoso", jabatan: "Ketua Umum", img: "11" },
+    { nama: "Siti Aminah, S.P.", jabatan: "Sekretaris Jenderal", img: "5" },
+    { nama: "Drs. Joko Wi", jabatan: "Bendahara Umum", img: "3" },
+];
+---
+<section id="struktur" class="py-24 bg-white text-slate-900">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-blue-950 mb-2">Struktur Organisasi</h2>
+        <div class="w-16 h-1 bg-yellow-500 mx-auto mb-12"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {pengurus.map((item) => (
+                <div class="group p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition duration-300">
+                    <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-green-500 transition">
+                        <img src={`https://i.pravatar.cc/150?img=${item.img}`} alt={item.nama} class="w-full h-full object-cover"/>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">{item.nama}</h3>
+                    <p class="text-yellow-600 font-medium text-sm uppercase tracking-wider">{item.jabatan}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

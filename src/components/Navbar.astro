@@ -1,0 +1,29 @@
+---
+// src/components/Navbar.astro
+import logoImage from "../assets/logo.png"
+---
+<nav class="bg-blue-950 text-white fixed w-full z-50 shadow-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <div class="flex items-center gap-3">
+                <div class="shrink-0 flex items-center gap-3">
+                    <img 
+                    src={logoImage.src} 
+                    alt="Logo PERHIPTANI" 
+                    class="w-14 h-14 bg-white rounded-full object-contain border-2 border-yellow-200 shadow-lg"
+                />
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl tracking-wide leading-none font-sans text-white">PERHIPTANI DPD KABUPATEN SRAGEN</h1>
+                    <span class="text-[10px] text-gray-300 tracking-wider uppercase">Penyuluh Pertanian Indonesia</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="hover:text-yellow-400 transition">Beranda</a>
+                <a href="#struktur" class="hover:text-yellow-400 transition">Organisasi</a>
+                <a href="#layanan" class="hover:text-yellow-400 transition">Layanan</a>
+                <a href="#produk" class="hover:text-yellow-400 transition">Produk Binaan</a>
+            </div>
+        </div>
+    </div>
+</nav>
