@@ -1,0 +1,109 @@
+---
+import Kegiatan1 from '../assets/kegiatan_1_2.jpeg';
+
+const kegiatanList = [
+    {
+        title: "Pelatihan Pertanian",
+        description: "Kami rutin mengadakan pelatihan bagi para penyuluh dan petani untuk meningkatkan keterampilan dan pengetahuan mereka dalam bidang pertanian modern."
+    },
+    {
+        title: "Sosialisasi Teknologi",
+        description: "Program sosialisasi mengenai teknologi pertanian terkini untuk meningkatkan efisiensi dan produktivitas usaha pertanian."
+    },
+    {
+        title: "Pendampingan Kelompok",
+        description: "Pendampingan intensif kepada kelompok tani untuk pengembangan dan penerapan inovasi pertanian berkelanjutan."
+    },
+    {
+        title: "Kerjasama Riset",
+        description: "Melakukan kerjasama penelitian dengan universitas dan lembaga riset untuk mengembangkan teknologi pertanian yang inovatif dan tepat guna."
+    },
+    {
+        title: "Promosi Produk",
+        description: "Promosi produk pertanian berkualitas dari petani lokal melalui berbagai media untuk meningkatkan nilai jual dan akses pasar."
+    },
+    {
+        title: "Workshop Organik",
+        description: "Workshop khusus tentang pertanian organik dan praktik pertanian berkelanjutan untuk kesehatan tanah dan lingkungan."
+    }
+];
+---
+
+<section id="kegiatan" class="py-24 bg-slate-50 text-slate-900 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-blue-950 mb-2">Kegiatan Kami</h2>
+            <div class="w-16 h-1 bg-yellow-500 mx-auto mb-12"></div>
+        </div>
+        
+        <!-- Wrapper Utama untuk Posisi Panah -->
+        <div class="relative group">
+            
+            <!-- Tombol Panah Kiri -->
+            <button 
+                id="prevBtn"
+                class="absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+                aria-label="Previous"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+
+            <!-- Container Slider -->
+            <div 
+                id="kegiatanSlider" 
+                class="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar pb-8 px-2"
+            >
+                {kegiatanList.map((kegiatan) => (
+                    <div class="w-full md:w-[calc((100%-4rem)/3)] shrink-0 p-6 bg-white rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition duration-300 flex flex-col h-full">
+                        <img class="w-full h-48 object-cover rounded-lg mb-4" src={Kegiatan1.src} alt={kegiatan.title}>
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">{kegiatan.title}</h3>
+                        <p class="text-slate-600 text-sm flex-grow">{kegiatan.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Tombol Panah Kanan -->
+            <button 
+                id="nextBtn"
+                class="absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+                aria-label="Next"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+
+        </div>
+    </div>   
+</section>
+
+<style>
+    /* Menghilangkan scrollbar agar terlihat seperti slider bersih */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
+<script>
+    const slider = document.getElementById('kegiatanSlider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (slider && prevBtn && nextBtn) {
+        // Menentukan jarak scroll (lebar satu kartu + gap)
+        const getScrollAmount = () => {
+            const firstChild = slider.querySelector('div');
+            return (firstChild?.clientWidth ?? 0) + 32 || slider.clientWidth;
+        };
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollLeft += getScrollAmount();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollLeft -= getScrollAmount();
+        });
+    }
+</script>

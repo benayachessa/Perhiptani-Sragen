@@ -1,26 +1,65 @@
 ---
-// src/components/StrukturOrganisasi.astro
-const pengurus = [
-    { nama: "Ir. Budi Santoso", jabatan: "Ketua Umum", img: "11" },
-    { nama: "Siti Aminah, S.P.", jabatan: "Sekretaris Jenderal", img: "5" },
-    { nama: "Drs. Joko Wi", jabatan: "Bendahara Umum", img: "3" },
-];
+import OrgCard from './OrgCard.astro';
+
+const data = {
+  pembina: ["Supriyanto, SST", "Makhmudyah WSB, SP"],
+  penasehat: ["Ir. Budiharjo", "M. Djazairi, SP., MM.", "Ir. Wikanto Joko S., MM."],
+  pengawas: ["Sri Astuti, SE, MM.", "Kus Hendratmo, SP.", "Sugito, SP"],
+  ketua: ["Edi Wahono, SP", "Muh. Ary Waskito, A.Md"],
+  sekretaris: ["Asri Utami FR, SP", "Sapto Wibowo, SP"],
+  bendahara: ["Agus Suwarno", "Tri Sunardi"],
+  seksi: [
+    { nama: "Pengkajian", anggota: ["Mudakir, SP.M.Si.", "Dian Aji Wardhani, S.Pt", "Widodo, SP"] },
+    { nama: "Humas & Publikasi", anggota: ["Agung Sutarno, SP", "Gideon Wahyu S, S.Pt", "Agus Rubiyanto, SP"] },
+    { nama: "Kesejahteraan", anggota: ["Pancarwati, Supihatin, SP", "Priyanto, SP", "Yeti Rohmadoni, SP"] },
+  ]
+};
 ---
-<section id="struktur" class="py-24 bg-white text-slate-900">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-blue-950 mb-2">Struktur Organisasi</h2>
-        <div class="w-16 h-1 bg-yellow-500 mx-auto mb-12"></div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pengurus.map((item) => (
-                <div class="group p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition duration-300">
-                    <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-green-500 transition">
-                        <img src={`https://i.pravatar.cc/150?img=${item.img}`} alt={item.nama} class="w-full h-full object-cover"/>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800">{item.nama}</h3>
-                    <p class="text-yellow-600 font-medium text-sm uppercase tracking-wider">{item.jabatan}</p>
-                </div>
-            ))}
-        </div>
+
+<section id="struktur" class="py-16 bg-gray-50 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Judul -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-blue-900 inline-block relative mt-16">
+        Struktur Organisasi
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-yellow-500"></span>
+      </h2>
+      <p class="mt-4 text-gray-600 font-medium text-lg">DPD PERHIPTANI KABUPATEN SRAGEN PERIODE 2026 - 2028</p>
     </div>
+
+    <!-- Tier 1: Pembina & Penasehat -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <OrgCard role="Pembina" names={data.pembina} variant="secondary" />
+      <OrgCard role="Penasehat" names={data.penasehat} variant="secondary" />
+    </div>
+
+    <!-- Tier 2: Pengawas -->
+    <div class="max-w-2xl mx-auto mb-12">
+      <OrgCard role="Pengawas / Pemeriksa KU" names={data.pengawas} variant="secondary" />
+    </div>
+
+    <!-- Tier 3: Pengurus Inti (Ketua, Sekretaris, Bendahara) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+      <OrgCard role="Ketua" names={data.ketua} />
+      <OrgCard role="Sekretaris" names={data.sekretaris} />
+      <OrgCard role="Bendahara" names={data.bendahara} />
+    </div>
+
+    <!-- Tier 4: Seksi-Seksi -->
+    <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-blue-900 italic">Bidang Seksi-Seksi</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {data.seksi.map((item) => (
+        <OrgCard role={item.nama} names={item.anggota} />
+      ))}
+    </div>
+  </div>
 </section>
+
+<style>
+  /* Menambahkan efek smooth scroll atau font jika diperlukan */
+  section {
+    font-family: 'Inter', sans-serif;
+  }
+</style>
