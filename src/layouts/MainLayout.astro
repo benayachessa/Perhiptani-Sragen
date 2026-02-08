@@ -1,6 +1,7 @@
 ---
 // src/layouts/MainLayout.astro
  import '../styles/global.css' 
+ import logo from '../assets/logo.png';
 
 const { 
   title = "PERHIPTANI - Perhimpunan Penyuluh Pertanian Indonesia", 
@@ -11,11 +12,19 @@ const {
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
   <head>
+    <title>PERHIPTANI DPD Kapupaten Sragen - Penyuluh Pertanian Indonesia</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <meta name="description" content="Wadah Kolaborasi SDN pertanian untuk meningkatkan literasi, edukasi, dan produktivitas pangan Kabupaten Sragen." />
+    <meta name="keywords" content="Perhiptani Sragen, Pertanian Sragen, Penyuluh Pertanian, Sragen Modern, Perhiptani Kabupaten Sragen">
+
+    <!-- Open Graph (Agar bagus saat di-share ke WA/Facebook) -->
+    <meta property="og:title" content="PERHIPTANI DPD Kabupaten Sragen">
+    <meta property="og:description" content="Membangun Pertanian Modern Berbasis Teknologi & Kearifan.">
+    <meta property="og:image" content={logo.src}>
+    <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
