@@ -1,23 +1,31 @@
 ---
 // src/components/Navbar.astro
+import { Image } from "astro:assets";
 import logoImage from "../assets/logo.png"
 ---
-<nav class="bg-blue-950 text-white fixed w-full z-50 shadow-lg border-b border-white/10">
+<nav class="bg-blue-950 text-white fixed w-full z-[100] shadow-lg border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
+            <!-- Logo & Title -->
             <div class="flex items-center gap-3">
-                <div class="shrink-0 flex items-center gap-3">
-                    <img 
-                    src={logoImage.src} 
-                    alt="Logo PERHIPTANI" 
-                    class="w-14 h-14 bg-white rounded-full object-contain border-2 border-yellow-200 shadow-lg"
-                />
+                <div class="shrink-0">
+                    <Image 
+                        src={logoImage} 
+                        alt="Logo" 
+                        class="w-10 h-10 md:w-14 md:h-14 bg-white rounded-full object-contain border-2 border-yellow-200 shadow-lg"
+                    />
                 </div>
-                <div>
-                    <h1 class="font-bold text-xl tracking-wide leading-none font-sans text-white">PERHIPTANI DPD KABUPATEN SRAGEN</h1>
-                    <span class="text-[10px] text-gray-300 tracking-wider uppercase">Penyuluh Pertanian Indonesia</span>
+                <div class="max-w-[200px] md:max-w-none">
+                    <h1 class="font-bold text-xs md:text-xl tracking-wide leading-tight font-sans text-white">
+                        PERHIPTANI DPD KABUPATEN SRAGEN
+                    </h1>
+                    <span class="text-[8px] md:text-[10px] text-gray-300 tracking-wider uppercase">
+                        Penyuluh Pertanian Indonesia
+                    </span>
                 </div>
             </div>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#home" class="hover:text-yellow-400 transition">Beranda</a>
                 <a href="#struktur" class="hover:text-yellow-400 transition">Organisasi</a>
@@ -25,6 +33,52 @@ import logoImage from "../assets/logo.png"
                 <a href="#produk" class="hover:text-yellow-400 transition">Produk Binaan</a>
                 <a href="#kegiatan" class="hover:text-yellow-400 transition">Kegiatan</a>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-white p-2 focus:outline-none" aria-label="Menu">
+                    <!-- Icon Hamburger -->
+                    <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon Close (Hidden by default) -->
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu List -->
+    <div id="mobile-menu" class="hidden md:hidden bg-blue-900 border-t border-white/10 animate-in slide-in-from-top duration-300">
+        <div class="px-4 pt-2 pb-6 space-y-1 shadow-2xl">
+            <a href="#home" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium hover:bg-blue-800 transition">Beranda</a>
+            <a href="#struktur" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium hover:bg-blue-800 transition">Organisasi</a>
+            <a href="#layanan" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium hover:bg-blue-800 transition">Layanan</a>
+            <a href="#produk" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium hover:bg-blue-800 transition">Produk Binaan</a>
+            <a href="#kegiatan" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium hover:bg-blue-800 transition">Kegiatan</a>
         </div>
     </div>
 </nav>
+
+<script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+        menu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+    }
+
+    btn.addEventListener('click', toggleMenu);
+
+    // Tutup menu otomatis saat link diklik
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+</script>

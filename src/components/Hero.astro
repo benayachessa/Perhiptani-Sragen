@@ -1,14 +1,15 @@
 ---
 // src/components/Hero.astro
 // Anda bisa mengganti URL gambar di bawah ini dengan gambar lokal (import) nanti jika mau
+import { Image } from "astro:assets";
 import heroImage from "../assets/bg1.jpg"
 ---
 
 <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
     
     <div class="absolute inset-0 z-0">
-        <img 
-            src={heroImage.src} 
+        <Image 
+            src={heroImage} 
             alt="Latar Belakang Pertanian" 
             class="w-full h-full object-cover"
         />

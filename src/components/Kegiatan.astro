@@ -1,31 +1,19 @@
 ---
-import Kegiatan1 from '../assets/Kegiatan_1_2.jpeg';
+import { Image } from "astro:assets";
+import Kegiatan1 from '../assets/Kegiatan_1.jpeg';
+import Kegiatan2 from '../assets/Kegiatan_1_1.jpeg';
+import Kegiatan3 from '../assets/Kegiatan_1_2.jpeg';
 
 const kegiatanList = [
     {
-        title: "Pelatihan Pertanian",
-        description: "Kami rutin mengadakan pelatihan bagi para penyuluh dan petani untuk meningkatkan keterampilan dan pengetahuan mereka dalam bidang pertanian modern."
+        id: 0,
+        title: "Musyawarah Daerah & Rapat Anggota Tahunan Tahun 2026",
+        shortDesc: "Kami rutin mengadakan Seminar dan Musyawarah Daerah untuk membahas perkembangan pertanian terkini serta strategi peningkatan kesejahteraan petani di Kabupaten Sragen.",
+        fullDescription: "Seminar dan Musyawarah Daerah PERHIPTANI DPD Kabupaten Sragen tahun 2026 berlangsung dengan sukses, menghadirkan para ahli pertanian, penyuluh, dan petani untuk berdiskusi tentang inovasi terbaru dalam praktik pertanian. Acara ini menjadi platform penting untuk berbagi pengetahuan, pengalaman, dan strategi guna meningkatkan produktivitas serta kesejahteraan petani di wilayah kami. Melalui kolaborasi yang erat antara berbagai pihak, kami berkomitmen untuk terus mendorong kemajuan sektor pertanian di Kabupaten Sragen.",
+        mainImage: Kegiatan1,
+        gallery: [Kegiatan1.src, Kegiatan2.src, Kegiatan3.src]
     },
-    {
-        title: "Sosialisasi Teknologi",
-        description: "Program sosialisasi mengenai teknologi pertanian terkini untuk meningkatkan efisiensi dan produktivitas usaha pertanian."
-    },
-    {
-        title: "Pendampingan Kelompok",
-        description: "Pendampingan intensif kepada kelompok tani untuk pengembangan dan penerapan inovasi pertanian berkelanjutan."
-    },
-    {
-        title: "Kerjasama Riset",
-        description: "Melakukan kerjasama penelitian dengan universitas dan lembaga riset untuk mengembangkan teknologi pertanian yang inovatif dan tepat guna."
-    },
-    {
-        title: "Promosi Produk",
-        description: "Promosi produk pertanian berkualitas dari petani lokal melalui berbagai media untuk meningkatkan nilai jual dan akses pasar."
-    },
-    {
-        title: "Workshop Organik",
-        description: "Workshop khusus tentang pertanian organik dan praktik pertanian berkelanjutan untuk kesehatan tanah dan lingkungan."
-    }
+    //... Tambahkan data lainnya dengan struktur yang sama
 ];
 ---
 
@@ -36,74 +24,137 @@ const kegiatanList = [
             <div class="w-16 h-1 bg-yellow-500 mx-auto mb-12"></div>
         </div>
         
-        <!-- Wrapper Utama untuk Posisi Panah -->
         <div class="relative group">
-            
-            <!-- Tombol Panah Kiri -->
-            <button 
-                id="prevBtn"
-                class="absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
-                aria-label="Previous"
-            >
+            <button id="prevBtn" class="absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
 
-            <!-- Container Slider -->
-            <div 
-                id="kegiatanSlider" 
-                class="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar pb-8 px-2"
-            >
+            <div id="kegiatanSlider" class="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar pb-8 px-2">
                 {kegiatanList.map((kegiatan) => (
-                    <div class="w-full md:w-[calc((100%-4rem)/3)] shrink-0 p-6 bg-white rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition duration-300 flex flex-col h-full">
-                        <img class="w-full h-48 object-cover rounded-lg mb-4" src={Kegiatan1.src} alt={kegiatan.title}>
+                    <div 
+                        class="kegiatan-card w-full md:w-[calc((100%-4rem)/3)] p-6 bg-white rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition duration-300 flex flex-col h-full shrink-0 cursor-pointer"
+                        data-id={kegiatan.id}
+                    >
+                        <Image class="w-full h-48 object-cover rounded-lg mb-4" src={kegiatan.mainImage} alt={kegiatan.title} />
                         <h3 class="text-xl font-bold text-slate-800 mb-4">{kegiatan.title}</h3>
-                        <p class="text-slate-600 text-sm grow">{kegiatan.description}</p>
+                        <p class="text-slate-600 text-sm grow">{kegiatan.shortDesc}</p>
+                        <span class="text-green-600 text-xs font-bold mt-4">Klik untuk detail →</span>
                     </div>
                 ))}
             </div>
 
-            <!-- Tombol Panah Kanan -->
-            <button 
-                id="nextBtn"
-                class="absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
-                aria-label="Next"
-            >
+            <button id="nextBtn" class="absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 p-3 rounded-full shadow-lg text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
-
         </div>
     </div>   
 </section>
 
+<!-- MODAL DETAIL KEGIATAN -->
+<div id="kegiatanModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden relative flex flex-col animate-in fade-in zoom-in duration-300">
+        
+        <!-- Tombol Close -->
+        <button id="closeModal" class="absolute right-4 top-4 z-[110] bg-white/20 hover:bg-white/40 backdrop-blur-md p-2 rounded-full text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <!-- Gallery Slider (Top Half) -->
+        <div class="relative w-full h-64 md:h-96 bg-slate-200">
+            <div id="modalGallery" class="flex h-full w-full overflow-x-hidden">
+                <!-- Foto-foto akan diinject via JS -->
+            </div>
+            <!-- Panah Slider Gallery -->
+            <button id="modalPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/50 p-2 rounded-full hover:bg-white transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+            <button id="modalNext" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/50 p-2 rounded-full hover:bg-white transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+
+        <!-- Content (Bottom Half) -->
+        <div class="p-8 overflow-y-auto">
+            <h2 id="modalTitle" class="text-2xl md:text-3xl font-bold text-blue-950 mb-4"></h2>
+            <div class="w-12 h-1 bg-yellow-500 mb-6"></div>
+            <p id="modalDesc" class="text-slate-600 leading-relaxed text-sm md:text-base"></p>
+        </div>
+    </div>
+</div>
+
 <style>
-    /* Menghilangkan scrollbar agar terlihat seperti slider bersih */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 
-<script>
+<script is:inline define:vars={{ kegiatanList }}>
     const slider = document.getElementById('kegiatanSlider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const modal = document.getElementById('kegiatanModal');
+    const modalGallery = document.getElementById('modalGallery');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    let currentGalleryIndex = 0;
+    let currentGalleryPhotos = [];
 
-    if (slider && prevBtn && nextBtn) {
-        // Menentukan jarak scroll (lebar satu kartu + gap)
-        const getScrollAmount = () => {
-            const firstChild = slider.querySelector('div');
-            return (firstChild?.clientWidth ?? 0) + 32 || slider.clientWidth;
-        };
+    // 1. Logika Slider Utama
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        const amount = slider.querySelector('div').clientWidth + 32;
+        slider.scrollLeft += amount;
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        const amount = slider.querySelector('div').clientWidth + 32;
+        slider.scrollLeft -= amount;
+    });
 
-        nextBtn.addEventListener('click', () => {
-            slider.scrollLeft += getScrollAmount();
+    // 2. Logika Buka Modal
+    document.querySelectorAll('.kegiatan-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.getAttribute('data-id');
+            const data = kegiatanList.find(item => item.id == id);
+            
+            if (data) {
+                modalTitle.innerText = data.title;
+                modalDesc.innerText = data.fullDescription;
+                currentGalleryPhotos = data.gallery;
+                currentGalleryIndex = 0;
+
+                // Inject Gallery
+                modalGallery.innerHTML = data.gallery.map(imgSrc => `
+                    <img src="${imgSrc}" class="w-full h-full object-cover shrink-0 transition-transform duration-500" />
+                `).join('');
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Stop scroll body
+            }
         });
+    });
 
-        prevBtn.addEventListener('click', () => {
-            slider.scrollLeft -= getScrollAmount();
+    // 3. Logika Slider di Dalam Modal
+    function updateModalGallery() {
+        const imgs = modalGallery.querySelectorAll('img');
+        imgs.forEach((img) => {
+            img.style.transform = `translateX(-${currentGalleryIndex * 100}%)`;
         });
     }
+
+    document.getElementById('modalNext').addEventListener('click', () => {
+        if (currentGalleryIndex < currentGalleryPhotos.length - 1) {
+            currentGalleryIndex++;
+            updateModalGallery();
+        }
+    });
+
+    document.getElementById('modalPrev').addEventListener('click', () => {
+        if (currentGalleryIndex > 0) {
+            currentGalleryIndex--;
+            updateModalGallery();
+        }
+    });
+
+    // 4. Tutup Modal
+    const closeMdl = () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    };
+
+    document.getElementById('closeModal').addEventListener('click', closeMdl);
+    modal.addEventListener('click', (e) => { if(e.target === modal) closeMdl(); });
 </script>
